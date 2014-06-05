@@ -1,0 +1,12 @@
+form#search.single_text.new_search.formtastic.searchlogic_search(action='/', method='post', style='')
+  fieldset.inputs.single_text
+    ol
+      ol.label_over
+        li.string.optional
+          label.over(for='keyword') Type a gift name here for a list of gifts…
+            input#keyword(name='keyword', type='text')  
+  fieldset.buttons
+    ol
+      li.commit
+        input#search_submit.input-submit-blue.search(name='commit', type='submit', value='Search')
+        //- a(href='#', class="input-submit-blue search") Search

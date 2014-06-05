@@ -1,0 +1,53 @@
+<% lengths = "#{object.class.name}::#{attachment.to_s.upcase}_LENGTHS".constantize %> 
+<% crop_attributes = object.class.crop_attributes %> 
+<% object_singular_class_name = dom_class(object) %>
+
+<%= object_singular_class_name2 = dom_class(object) %>
+<div id="crop">
+  <%= image_tag(object.avatar.url(:original), :id => "cropbox", :size => '', :attachment => attachment) %>
+</div>
+<h3> Preview </h3>
+<div class="preview crop" style="width: #{lengths[:large]}px; height: #{lengths[:large]}px; overflow: hidden;" >
+  <%= image_tag(object.avatar.url(:original), :id => "preview", :size => '', :attachment => attachment) %>
+</div>  
+<%= semantic_form_for object, :html => {:class => "crop"} do |f| %>
+	<%= f.inputs do %>
+	  <% crop_attributes.each do |attribute| %>
+		  <%= f.input attribute, :as => :hidden %>
+		<% end %>
+	<% end %>
+	<%= f.actions class: "buttons" do %>
+    <%= f.action :submit, label: "Crop picture", class: "input-submit-form", :button_html => {:value => "Crop picture", :class => "crop_picture"}, :wrapper_html => {:class => "commit"} %>
+  <% end %>
+<% end %>
+
+<script language='javascript'>
+  $(document).ready(function() {
+    console.log("<%= lengths[:original] %>");
+    $('#cropbox').Jcrop({
+      onChange: updateCrop,
+      onSelect: updateCrop,
+      setSelect: [0, 0, "<%= lengths[:original] %>", "<%= lengths[:original] %>"],
+      aspectRatio: 1
+    });
+    function updateCrop(coords) {
+      var rx = "<%= lengths[:large] %>"/ coords.w;
+      var ry = "<%= lengths[:large] %>" / coords.h;
+
+      $('#preview').css({
+        width: Math.round(rx * "<%= object.send(:photo_geometry).width %>") + 'px',
+        height: Math.round(ry * "<%= object.send(:photo_geometry).height %>") + 'px',
+        marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+        marginTop: '-' + Math.round(ry * coords.y) + 'px'
+      });
+      var crop_x = "<%= object_singular_class_name %>" + "_crop_x";
+      var crop_y = "<%= object_singular_class_name %>" + "_crop_y";
+      var crop_w = "<%= object_singular_class_name %>" + "_crop_w";
+      var crop_h = "<%= object_singular_class_name %>" + "_crop_h";
+      $("#" + crop_x).val(coords.x);
+      $("#" + crop_y).val(coords.y);
+      $("#" + crop_w).val(coords.w);
+      $("#" + crop_h).val(coords.h);
+    }
+  });
+</script>

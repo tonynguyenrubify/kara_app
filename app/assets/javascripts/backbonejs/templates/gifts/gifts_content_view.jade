@@ -1,0 +1,69 @@
+#comments_section.section.product-section-content
+  div#load_ding_view(style="position: absolute; top: 0;")
+  h4 Gifts
+  .section_content
+    - if (true)
+      .explain_text.vendor-landing-product-service(style="padding-left: 0 !important; padding-right: 0 !important;")
+        form.button-to.add-a-new-gift(action='/comments/new', method='get')
+          div
+            input(style='', type='submit', value='Add a new gift')
+      iframe(id='gift_iframe', name='gift_iframe', style="width:1px; height:1px; position: absolute; top: -9999px;")
+      form#new_gift.single_text.formtastic.document.new-product(method='post', enctype='multipart/form-data', action='/api/gifts', style='display: none; margin-top: -22px;', target="gift_iframe")
+        h3.form_title(style="padding-left: 0px;") Add a new gift
+          span.close_icon.fake-link
+        fieldset.inputs.single_text.set-width-100-percent(style='display: block;')
+          legend
+            span Name
+          ol.label_over.set-width-100-percent
+            li#vendor_product_name_input.string.input.optional.stringish.set-width-100-percent
+              label.label.over(for='vendor_product_name') Type the name of your gift…
+              input#gift_name(type='text', size='30', name='gift[name]', maxlength='255', style="max-width: 100% !important; width: 668px;")
+        fieldset.inputs.single_text.set-width-100-percent(style='display: block;')
+          legend
+            span Site url
+          ol.label_over.set-width-100-percent
+            li#vendor_product_name_input.string.input.optional.stringish.set-width-100-percent
+              label.label.over(for='vendor_product_name') Type the site url of your gift…
+              input#gift_site_url(type='text', size='30', name='gift[site_url]', maxlength='255', style="max-width: 100% !important; width: 668px;")      
+        fieldset.inputs.single_text(style='display: block;')
+          legend
+            span Details
+          ol.label_over
+            li#vendor_product_description_input.text.input.required
+              label.label.over(for='vendor_product_description') Type the details of your gift here…
+              textarea(rows='20', style='resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; height: 36px; width: 281px; line-height: 17px; text-decoration: none; letter-spacing: normal;', tabindex='-1')
+              textarea#gift_description(rows='20', name='gift[description]', style='height: 4em;resize: none; overflow-y: hidden; width: 668px;')
+        fieldset.inputs.single_text(style='display: block;')
+          legend
+            span Photo
+          ol.label_over
+            li#error_document_attachment_input
+              span#error(style='font-weight: bold; line-height: 18px;')
+            li#vendor_product_photo_input.file.input.optional
+              input#gift_photo(type='file', name='gift[photo]', accept="image/*", style="width: 100%;")
+              p.inline-hints JPG, GIF, PNG formats.
+              ul.errors(style='display: none;')
+                li.invalid(htmlfor='document_attachment', generated='true', style='') Should be a image file
+        fieldset.buttons(style='display: block; padding-left: 0px !important;')
+          ol
+            li#gift_submit_action.action.input_action.commit.gift-submit-action
+              input.create(type='submit', value='Create Gift', name='commit')
+            li.cancel
+              a(href='#') Cancel
+    #search_container
+    #gifts_container
+    
+    .content-loading-ajax-link-extract(style='display: none; clear: both;')
+      #loading_ajax_icon
+    .show-more-backbone(style="display: none;")
+      a(href='#') Load more
+
+#content_border
+  #flash
+  #tab_container.content-vendor-tab.content-dashboar-tab
+    #vendors_navigation.tab
+  //- #image_background_container
+  //- #profile_vendor_container
+  //- #sub_tab_container.content-vendor-tab
+  //-   #sub_vendors_navigation.tab
+  .content-new-tab.content-solution-provider-tab

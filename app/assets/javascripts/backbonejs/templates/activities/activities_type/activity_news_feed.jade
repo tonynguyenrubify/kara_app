@@ -1,0 +1,15 @@
+.link-all-feed
+  a(href='/news_articles') Show all
+.icon
+  #new_feed
+.content
+  h4.title
+    a(href='#{url}', popup='true', target='_blank')!= new_feed_title
+    - if(is_recent)
+      span.new_icon NEW
+    span.news-type(style='color: #999; font-size: 11px; padding-left: 5px;') [News]
+  .subtitle
+    span.publisher= publisher
+    |  · 
+    abbr.published_at.timeago(title='#{created_at}',abbr="#{created_at}")= time_ago
+  .excerpt!= content

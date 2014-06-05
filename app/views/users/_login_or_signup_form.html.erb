@@ -1,0 +1,132 @@
+<div id='login_or_signup_form'>
+  <% if params[:ajax] == "true" %>
+    <div class='close-button' onclick="$.fancybox.close();"></div>
+  <% end %>
+  <div id="login-tab-container">
+	  <ul class='etabs'>
+	    <li class='tab' id='login_tab'><a href="#login_form_content">Login</a></li>
+	    <li class='tab' id='sign_up_tab'><a href="#signup_form_content">Sign Up</a></li>
+	  </ul>
+    <div id='login_form_content' style='padding-left: 10px;'>
+      
+      <div style='text-align: center; margin-top: 20px; margin-bottom: 27px;'>
+        <a href='/auth/facebook?origin<%= referrer_url.blank? == false ? CGI.escape(referrer_url) : '/' %>' class='facebook-connect-button'>Login using Facebook</a>
+        <br/>
+        <img src='/assets/or_text.png' />
+      </div>
+      <% if flash[:alert].blank? == false %>
+        <div id='error_explanation'><%= flash[:alert] %></div>
+      <% end %>
+      <%= form_for(@user, :as => "user", :url => session_path("user"), :html => {:id => "user_new"}) do |f| %>
+    		
+    		<div style='padding: 0 20px;'>
+      		<div class='clearfix' style='margin-bottom: 15px;'>
+            <div>
+              <%= f.label :email, "Email Address" %>
+              <%= f.email_field :email, :id => "sign_in_user_email" %>
+            </div>
+
+            <div style='margin-top: 19px;'>
+              <%= f.label :password %>
+              <%= f.password_field :password %>
+              <br/>
+              <div style='text-align:right; margin-top: 5px;'>
+                <%= link_to "Forgot your password?", new_password_path(resource_name), class: "blue-link", :style => "font-size: 11px; text-align: right;" %>
+              </div>
+            </div>          
+          </div>          
+        </div>
+        
+        <div class='sign-in-portion clearfix sign-in-portion-buttons'>
+    	  	<div class='sign-in-button'>
+    	  	  <%= f.submit "Login" %>
+    	  	  &nbsp;
+    	  	  <%= f.check_box :remember_me %> Remember me
+    	  	  <br/><br/>
+    	  	</div>
+    	  	<div style='line-height: 20px; color: #8f8f8f;'>
+      		  By clicking "Login using Facebook", you confirm that you accept our <a href='/pages/terms_of_service' style='text-decoration: underline; color: #8f8f8f;' target="_blank">Terms of Service</a>
+      		</div>
+      		<br/><br/>
+    		</div>    		
+      <% end %>    
+    </div>
+  
+    <div id='signup_form_content'>
+      <div style='text-align: center; margin-top: 20px; margin-bottom: 27px;'>
+        <a href='/auth/facebook?origin<%= referrer_url.blank? == false ? CGI.escape(referrer_url) : '/' %>' class='facebook-connect-button'>Connect with Facebook</a>
+        <div style='color: #3b5998;'>We'll never post without your permission</div>
+        <br/>
+        <img src='/assets/or_text.png' />
+      </div>
+      <%= form_for(@user, :as => "user", :url => registration_path("user"), :html => {:id => "user_new"}) do |f| %>
+        
+        <%= devise_error_messages! %>
+        
+        <div style='padding: 0 20px;'>
+          <div class='clearfix' style='margin-bottom: 15px;'>
+            <div style='margin-bottom: 20px;'>
+        	    <%= f.label :first_name %>
+        	    <%= f.text_field :first_name %>
+        	  </div>
+        	  
+      	    <div style='margin-bottom: 20px;'>
+        	    <%= f.label :email, "Email Address" %>
+        	    <%= f.email_field :email %>
+        	  </div>
+
+        	  <div style='margin-bottom: 10px;'>
+        	    <%= f.label :password %>
+        	    <%= f.password_field :password %>
+        	  </div>
+        	  
+        	  <div style='margin-bottom: 10px; display: none;'>
+        	    <%= f.label :password_confirmation %>
+        	    <%= f.password_field :password_confirmation %>
+        	  </div>
+        	  
+        	</div>
+        </div>
+    		<div class='sign-in-portion clearfix sign-in-portion-buttons'>
+    	  	<div class='sign-in-button'>
+    	  	  <%= f.submit "Create Account" %>
+    	  	  &nbsp;
+    	  	  <input type='checkbox' /> Remember me
+    	  	</div>
+    	  	<br/><br/>
+    	  	<div style='line-height: 20px; color: #8f8f8f;'>
+      		  By clicking "Create Account" or "Connect with Facebook", you confirm that you accept our <a href='/pages/terms_of_service' style='text-decoration: underline; color: #8f8f8f;' target="_blank">Terms of Service</a>
+      		</div>
+      		<br/><br/>
+    		</div>
+    	<% end %>
+    </div>  
+  </div>
+</div>
+<script language='javascript'>
+  $('#login-tab-container').easytabs({
+    defaultTab: '#<%= active %>_tab',
+    updateHash: false
+  });
+  $('#login-tab-container').bind("easytabs:after", function() {
+    $.fancybox.center();
+    $("#login-tab-container div.active").find("input[type!=hidden]:first").focus();
+  });
+  $(document).ready(function() {
+    <% if active == "login" %>
+      window.setTimeout(function() {
+        $("#sign_in_user_email")[0].focus();
+      }, 200);
+      
+    <% end  %>    
+    
+    <% if active == "sign_up" %>
+      window.setTimeout(function() {
+        $("#user_first_name")[0].focus();
+      }, 200);
+      
+    <% end  %>    
+    
+  });
+
+</script>

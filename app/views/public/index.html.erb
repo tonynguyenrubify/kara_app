@@ -1,0 +1,23 @@
+<% if user_signed_in? %>
+  <div id="user_actions">
+    <ul>
+      <li class="link">
+        <a href="/users/<%= current_user.id %>/edit">Settings</a>
+      </li>
+      <li class="link">
+        <a href="/users/sign_out" data-method="delete" rel="nofollow">Logout</a>
+      </li>
+    </ul>  
+  </div>  
+<% else %>  
+  <div id="user_actions">
+    <ul>
+      <li class="link">
+        <a href="/public/home">Home</a>
+      </li>
+      <li class="link">
+        <a href="/users/sign_in" rel="nofollow">Sign in</a>
+      </li>
+    </ul>  
+  </div>
+<% end %>

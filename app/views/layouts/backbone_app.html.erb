@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KaraApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if user_signed_in? %>
+    <div id="user_actions">
+      <ul>
+        <li class="link">
+          <a href="/users/<%= current_user.id %>/edit">Settings</a>
+        </li>
+        <li class="link">
+          <a href="/users/sign_out" data-method="delete" rel="nofollow">Logout</a>
+        </li>
+      </ul>  
+    </div>  
+  <% end %>
+  <div id="container">
+    <div id="left_sidebar">
+      <div id="top_left_menu"></div>  
+      <div id="bottom_left_menu"></div>
+    </div>  
+    <div id="content_shadow">
+      <div id="content_right_shadow"></div>
+    </div>  
+    <div id="right_sidebar" class="activities">
+      <div id="news_feed"></div>
+    </div>
+    <div class="clr"></div>
+  </div>  
+<%= yield %>
+
+</body>
+</html>
+<script language="javascript">
+  $(document).ready(function() {
+    // startICR360Application("38ced832-ea05-11e3-8398-c82a14fffeed");   
+    // alert("<%= current_user.authentication_token %>");
+    startICR360Application("<%= current_user.authentication_token %>");    
+  });
+</script>

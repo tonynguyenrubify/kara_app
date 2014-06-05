@@ -1,0 +1,16 @@
+.photo
+  a(href='#{site_url}', popup='true', target='_blank')
+    img(alt='', attachment='photo', height='150', src='#{gift_photo_url}', width='150')
+.content(style="margin-left: 0px;")
+  .info
+    h6.name
+      a(href='#{site_url}', popup='true', target='_blank')= name
+    .body= description
+  .likes-section
+    .heart-icon
+    .like-text #{count_like} people like this
+  .gift-actions
+    a(href='/gifts_#{id}', class="action view input-submit-blue") View
+    a(href='/gifts_#{id}', class="action wish input-submit-blue") Wish
+    a(href='/gifts_#{id}', class="action share input-submit-blue") Share
+    a(href='/gifts_#{id}', class="action like input-submit-blue") Like
