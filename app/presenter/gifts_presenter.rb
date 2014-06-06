@@ -8,13 +8,13 @@ class GiftsPresenter < BasePresenter
     page = @params[:page] || 1
     like_gift_ids = current_user.likes.collect{|x| x.gift_id}.uniq + [0]
     @gifts = Gift.where("id IN (?)", like_gift_ids).order("created_at desc").search().paginate(:page => page, :per_page => 10)
-    @gifts_data = {page: page, gifts: extract_gifts_data(@gifts), total_pages: @gifts.total_pages, keyword: @params[:keyword]}
+    @gifts_data = {page: page, gifts: extract_gifts_data(@gifts), total_pages: @gifts.total_pages, keyword: @params[:keyword], is_admin: current_user.admin?}
   end
   
   def wishlist
     page = @params[:page] || 1
     @gifts = current_user.gifts.order("created_at desc").search().paginate(:page => page, :per_page => 10)
-    @gifts_data = {page: page, gifts: extract_gifts_data(@gifts), total_pages: @gifts.total_pages, keyword: @params[:keyword]}
+    @gifts_data = {page: page, gifts: extract_gifts_data(@gifts), total_pages: @gifts.total_pages, keyword: @params[:keyword], is_admin: current_user.admin?}
   end
     
   def extract_data_of_index

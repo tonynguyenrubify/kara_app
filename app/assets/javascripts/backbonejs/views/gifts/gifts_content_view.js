@@ -45,6 +45,12 @@ ICR360App.GiftsContentView = Backbone.Marionette.Layout.extend({
     this.first_time = true;
   },
   
+  serializeData: function() {
+     var viewData = {};
+     viewData.is_admin = this.collection.is_admin;
+     return viewData;
+   },
+   
   onShow: function() {
     var _this = this;
     this.bindUIElements();

@@ -24,7 +24,8 @@ class UsersPresenter < BasePresenter
       id: user.id,
       name: [user.first_name, user.last_name].join(" "),
       email: user.email,
-      created_at: user.created_at
+      created_at: user.created_at,
+      is_admin: user.admin?
     }
   end  
 end

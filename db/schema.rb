@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140605083022) do
+ActiveRecord::Schema.define(:version => 20140606070616) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.string   "action"
+    t.string   "related_item_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -52,6 +62,13 @@ ActiveRecord::Schema.define(:version => 20140605083022) do
     t.string   "alpha2"
     t.string   "lat"
     t.string   "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "followers", :force => true do |t|
+    t.integer  "comment_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

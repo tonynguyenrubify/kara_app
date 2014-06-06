@@ -63,12 +63,15 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :users
   
+  has_many :activities, :dependent => :destroy
   has_many :wishes, :dependent => :destroy
   has_many :gifts, :through => :wishes
   
   has_many :likes, :dependent => :destroy
   
   has_many :gifts_owner, :class_name => 'Gift', :foreign_key => 'user_id', :dependent => :destroy
+  
+  has_many :followers, :foreign_key => "user_id", :dependent => :destroy
   
   before_save :set_membership_role_type
   

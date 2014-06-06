@@ -7,6 +7,7 @@ ICR360App.Gifts = Backbone.Collection.extend({
     this.page = parseInt(response.page, 10);
     this.total_pages = parseInt(response.total_pages, 10);
     this.keyword = response.keyword;
+    this.is_admin = response.is_admin;
     return response.gifts;
   },
   

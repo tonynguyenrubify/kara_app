@@ -2,7 +2,7 @@
   div#load_ding_view(style="position: absolute; top: 0;")
   h4 Gifts
   .section_content
-    - if (true)
+    - if (is_admin)
       .explain_text.vendor-landing-product-service(style="padding-left: 0 !important; padding-right: 0 !important;")
         form.button-to.add-a-new-gift(action='/comments/new', method='get')
           div

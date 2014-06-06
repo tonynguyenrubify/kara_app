@@ -30,9 +30,15 @@ gem 'uuidtools'
 gem 'meta_search', '1.1.3'
 gem 'will_paginate', '3.0.5' #, :path => "vendor/gems/will_paginate-3.0.5"
 gem 'bourbon'
+
+gem 'acts-as-taggable-on', '2.4.1'
 gem 'acts_as_commentable', '3.0.1'
 
 gem 'new_responds_to_parent', '~> 0.1.5'
+
+gem 'sidekiq-unique-jobs'
+
+gem 'sidekiq'
 
 # gem 'rubify_dashboard', :path => "vendor/gems/rubify_dashboard"
 
