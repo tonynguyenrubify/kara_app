@@ -333,17 +333,92 @@ end
 
 
 
-def self.update_relationship_organization_for_all_vendor_in_system
-  result = []
-  Vendor.all.each do |vendor|
-    if (vendor.organization.present?)
-      if(vendor.organization.parent_organization.present? == false)
-        member_vendor = vendor.members.order("created_at asc").first
-        unless member_vendor.present?
-          member_vendor = vendor.creator
-          result << {vendor_id: vendor.id, creator_id: member_vendor.id}
-        end  
-      end  
-    end  
-  end  
-end
+# def update_relationship_organization_for_all_vendor_in_system
+#   result = []
+#   Vendor.all.each do |vendor|
+#     if (vendor.organization.present?)
+#       if(vendor.organization.parent_organization.present? == false)
+#         member_vendor = vendor.members.order("created_at asc").first
+#         unless member_vendor.present?
+#           member_vendor = vendor.creator
+#           result << {vendor_id: vendor.id, creator_id: member_vendor.id}
+#         end  
+#       end  
+#     end  
+#   end
+#   
+#   result_user_vendor = []
+#   User.vendor_members.each do |user|
+#     if user.is_vendor?
+#       unless user.vendor.present?
+#         unless user.temp_organization.present?
+#           result_user_vendor << {id: user.id, email: user.email, organization_id: user.organization.try(:id), local_organization_name: user.local_organization_name }
+#         end
+#       end  
+#     end  
+#   end    
+  
+  
+  # [{:id=>221, :email=>"ivy+new1@rubify.com", :organization_id=>nil, :local_organization_name=>""}, {:id=>215, :email=>"ivy+v@rubify.com", :organization_id=>21, :local_organization_name=>"ON"}, {:id=>249, :email=>"ivy+sp@rubify.com", :organization_id=>52, :local_organization_name=>"O.L"}, {:id=>231, :email=>"kelly+corporate2@rubify.com", :organization_id=>8, :local_organization_name=>"Rubify Tech"}, {:id=>220, :email=>"ivy+SV@rubify.com", :organization_id=>21, :local_organization_name=>"NAME"}]
+    
+  
+  # [{:id=>250, :email=>"kelly+vendor2@rubify.com"}, {:id=>221, :email=>"ivy+new1@rubify.com"}, {:id=>215, :email=>"ivy+v@rubify.com"}, {:id=>264, :email=>"giang+vendor2@rubify.com"}, {:id=>257, :email=>"ivy+sp4@rubify.com"}, {:id=>249, :email=>"ivy+sp@rubify.com"}, {:id=>231, :email=>"kelly+corporate2@rubify.com"}, {:id=>260, :email=>"kelly+vendor3@rubify.com"}, {:id=>220, :email=>"ivy+SV@rubify.com"}]
+  
+  
+#   result_user_vendor2 = []
+#   User.vendor_members.each do |user|
+#     if user.is_vendor? and user.local_organization.present?
+#       result_user_vendor2 << {local_organization_name: user.local_organization.name, user_id: user.id }
+#       # result_user_vendor << user.local_organization.name
+#     end  
+#   end
+#   
+#   
+# end
+
+
+# def self.create_new_vendor_for_SP_users_have_vendor_is_nil_in_system
+#   
+#   organization_type = OrganizationType.find_by_name("Security Vendor")   
+#   
+#   User.vendor_members.each do |user|
+#     if user.is_vendor?
+#       unless user.vendor.present?
+#         unless user.temp_organization.present?
+#           if user.local_organization.present? and user.organization.present?
+#             @organization = Organization.find_by_name_and_organization_id(user.local_organization.name, user.organization.id)
+#             unless @organization.present?
+#               check_organization = Organization.find_by_name(user.local_organization.name)
+#               if check_organization.present?
+#                 @organization = Organization.new({name: "#{user.local_organization.name} (#{user.organization.name})"})
+#               else
+#                 @organization = Organization.new({name: user.local_organization.name})
+#               end  
+#               @organization.organization_id = user.organization.id
+#               @organization.save
+#             end   
+#             
+#             if @organization.try(:id).present?
+#               user.local_organization_for_vendor = @organization
+#               check_organization = organization_type.organizations.find_by_name(@organization.parent_organization.name)
+#               if check_organization.present?
+#                 check_vendor = Vendor.find_by_name(@organization.name)
+#                 if check_vendor.present?
+#                   user.vendor_id = check_vendor.id
+#                 else
+#                   vendor = @organization.vendors.create!(:name => @organization.name)
+#                   if vendor.present?
+#                     user.vendor_id = vendor.id
+#                   end
+#                 end
+#               end
+#               user.save(:validate => false)
+#             end  
+#           end            
+#         end
+#       end  
+#     end  
+#   end
+#     
+# end
+
