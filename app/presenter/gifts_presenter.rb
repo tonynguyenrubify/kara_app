@@ -26,7 +26,7 @@ class GiftsPresenter < BasePresenter
       @gifts = Gift.order("created_at desc").search.paginate(:page => page, :per_page => 6)
     end    
     
-    @questions_data = {page: page, gifts: extract_gifts_data(@gifts), total_pages: @gifts.total_pages, keyword: @params[:keyword]}
+    @questions_data = {page: page, gifts: extract_gifts_data(@gifts), total_pages: @gifts.total_pages, keyword: @params[:keyword], is_admin: current_user.admin?}
   end  
   
   def extract_gifts_data(gifts)
