@@ -1,0 +1,18 @@
+.photo
+  a(href="/users/#{user_id}")
+    img(width='50', height='50', src='#{user_photo_url}', attachment='photo', alt='#{user_name}')
+.content
+  a(href='/users/#{user_id}')= user_name
+  |  likes  
+  a(href='/gifts/#{gift_id}')= gift_name
+  | .
+  .document.gift
+    .icon
+      a(popup='true', href='#{gift_site_url}')
+        img(width='70', height='70', src='#{gift_photo_url}', alt='')
+    .description
+      blockquote!= gift_description
+.meta
+  .activity_icon.gift(title='Gift')  
+  span.timestamp
+    abbr.timeago(title='#{created_at}')= time_ago

@@ -339,3 +339,23 @@ form.formtastic ul, form.formtastic ol, form.formtastic li, form.formtastic fiel
     }
   }
 }
+#activities {
+  border-top: 1px solid #EDEDED;
+  padding-top: 10px;
+  .dashboard { 
+    position: relative;
+    font-size: 1.083em;
+  }
+  .activity {
+    padding-left: 5px !important;
+    border-bottom: 1px solid #EDEDED;
+    clear: both !important;
+    float: none !important;
+    margin-bottom: 1em;
+    overflow: hidden;
+    padding-bottom: 8px;
+    padding-left: 10px;
+  }
+}
+
+

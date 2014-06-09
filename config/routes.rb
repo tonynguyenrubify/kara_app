@@ -12,7 +12,7 @@ KaraApp::Application.routes.draw do
     get '/users/:action', :controller => "users"
     post '/roles/:action', :controller => "roles"
     get '/roles/:action', :controller => "roles"
-    
+    get '/activities/:action', :controller => "activities"
     resources :questions do
     end  
     resources :users do

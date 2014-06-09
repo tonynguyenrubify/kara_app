@@ -1,5 +1,5 @@
 //= require label_over
-
+//= require jquery.timeago
 //= require ./backbonejs/libraries/jquery.simplemodal-1.4.5
 //= require ./backbonejs/templates
 //= require ./backbonejs/libraries/underscore-1.5.2

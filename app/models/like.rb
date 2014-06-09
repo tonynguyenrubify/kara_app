@@ -4,6 +4,8 @@ class Like < ActiveRecord::Base
   belongs_to :user
   belongs_to :gift
   
+  acts_as_commentable
+  
   after_create do |like|
     AfterLikeCreationJob.perform_async(like.id)
   end
