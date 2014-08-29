@@ -8,7 +8,7 @@ gem 'rails', '3.2.17'
 gem 'mysql2'
 gem 'unicorn'
 gem 'capistrano', '~> 2.15.5'
-# gem 'delayed_job_active_record', '0.3.2'
+gem 'delayed_job_active_record', '0.3.2'
 gem 'net-ssh', '2.7.0'
 # Gems used only for assets and not required
 # in production environments by default.
