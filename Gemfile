@@ -6,8 +6,6 @@ gem 'rails', '3.2.17'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
-gem 'mysql2'
 gem 'unicorn'
 gem 'capistrano', '~> 2.15.5'
 # gem 'delayed_job_active_record', '0.3.2'
