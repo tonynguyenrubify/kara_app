@@ -1,5 +1,7 @@
 require 'bundler/capistrano'
 require 'capistrano/ext/multistage'
+require "capistrano-rbenv"
+require 'sidekiq/capistrano'
 
 default_run_options[:pty] = true
 set :keep_releases, 5
@@ -27,16 +29,16 @@ namespace :deploy do
   desc "Zero-downtime restart of Unicorn"  
   task :force_restart, roles: :app do
     # run "service unicorn upgrade"
-    if remote_file_exists?("#{shared_path}/pids/deploy_app.pid")
-      run "kill -s QUIT `cat #{shared_path}/pids/deploy_app.pid`"
+    if remote_file_exists?("#{shared_path}/pids/kara_app.pid")
+      run "kill -s QUIT `cat #{shared_path}/pids/kara_app.pid`"
     end
     sleep(3)
     run "cd #{current_path} ; bundle exec unicorn -c config/unicorn.rb -D -E #{rails_env}"  
   end
 
   task :restart, roles: :app do
-    if remote_file_exists?("#{shared_path}/pids/deploy_app.pid")
-      run "kill -s USR2 `cat #{shared_path}/pids/deploy_app.pid`"
+    if remote_file_exists?("#{shared_path}/pids/kara_app.pid")
+      run "kill -s USR2 `cat #{shared_path}/pids/kara_app.pid`"
     end
   end
 
@@ -48,7 +50,7 @@ namespace :deploy do
 
   desc "Stop unicorn"
   task :stop, :except => { :no_release => true }, roles: :app  do
-    run "kill -s QUIT `cat #{shared_path}/pids/deploy_app.pid`"
+    run "kill -s QUIT `cat #{shared_path}/pids/kara_app.pid`"
   end
 
   desc 'migrate database'
