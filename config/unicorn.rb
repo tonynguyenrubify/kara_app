@@ -3,13 +3,13 @@ Dir.chdir(Unicorn::HttpServer::START_CTX[:cwd] = app_root)
 working_directory app_root
 
 Unicorn::HttpServer::START_CTX[0] = "#{app_root}/bin/unicorn"
-pid_file = File.join(File.dirname(__FILE__), "../../../shared/pids/<app_name>.pid")
-stderr_path File.join(File.dirname(__FILE__), "../../../shared/log/<app_name>.log")
-stdout_path File.join(File.dirname(__FILE__), "../../../shared/log/<app_name>.log")
+pid_file = File.join(File.dirname(__FILE__), "../../../shared/pids/kara_app.pid")
+stderr_path File.join(File.dirname(__FILE__), "../../../shared/log/kara_app.log")
+stdout_path File.join(File.dirname(__FILE__), "../../../shared/log/kara_app.log")
 old_pid = pid_file + '.oldbin'
 
 pid pid_file
-listen "/tmp/deploy_app.sock"
+listen "/tmp/kara_app.sock"
 worker_processes (ENV['RACK_ENV'] || ENV['RAILS_ENV']) == "production" ? 5 : 1
 preload_app true
 timeout 3000

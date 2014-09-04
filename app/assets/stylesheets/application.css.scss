@@ -14,6 +14,10 @@
  *= require login_or_signup
  */
 
+@import 'bourbon';
+@import 'functions';
+@import 'mixin';
+
 h6 {
   padding: 0;
   margin: 0;
@@ -43,7 +47,7 @@ ul {
 
 #user_new_container {
   h2 {
-/*    background: -moz-linear-gradient(center top , #586C8C, #264474) repeat scroll 0 0 #586C8C;*/
+    background: -moz-linear-gradient(center top , #586C8C, #264474) repeat scroll 0 0 #586C8C;
     border-radius: 4px 4px 0 0;
     color: #FFFFFF;
     font-size: 16px;
@@ -220,7 +224,7 @@ form.formtastic ul, form.formtastic ol, form.formtastic li, form.formtastic fiel
 }
 
 .button-submit {
-/*    background: -moz-linear-gradient(center top , #AAD181, #98C46B, #79AD45) repeat scroll 0 0 #AAD181;*/
+    background: -moz-linear-gradient(center top , #AAD181, #98C46B, #79AD45) repeat scroll 0 0 #AAD181;
     border-radius: 5px;
     box-shadow: 0 1px 2px #777777;
     color: #FFFFFF !important;
