@@ -1,0 +1,11 @@
+@mixin ie-linear-gradient($start-color, $end-color) {
+   filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr='#{$start-color}', endColorstr='#{$end-color}');
+   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start-color}', endColorstr='#{$end-color}')"; 
+}
+
+@mixin style_font($size, $weight) {
+  font: {
+    size: $size;
+    weight: $weight;
+  };
+}
