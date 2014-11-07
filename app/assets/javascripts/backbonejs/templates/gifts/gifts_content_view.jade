@@ -6,7 +6,7 @@
       .explain_text.vendor-landing-product-service(style="padding-left: 0 !important; padding-right: 0 !important;")
         form.button-to.add-a-new-gift(action='/comments/new', method='get')
           div
-            input(style='', type='submit', value='Add a new gift')
+            input(style='', type='submit', value='Add a new gift', class='btn btn-default')
       iframe(id='gift_iframe', name='gift_iframe', style="width:1px; height:1px; position: absolute; top: -9999px;")
       form#new_gift.single_text.formtastic.document.new-product(method='post', enctype='multipart/form-data', action='/api/gifts', style='display: none; margin-top: -22px;', target="gift_iframe")
         h3.form_title(style="padding-left: 0px;") Add a new gift

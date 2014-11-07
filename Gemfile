@@ -41,7 +41,7 @@ gem 'new_responds_to_parent', '~> 0.1.5'
 gem 'sidekiq-unique-jobs'
 
 gem 'sidekiq'
-
+gem 'heroku'
 # gem 'rubify_dashboard', :path => "vendor/gems/rubify_dashboard"
 
 
